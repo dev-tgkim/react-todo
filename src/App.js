@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   render() {
-    const { input } = this.state;
+    const { input, todos } = this.state; //이걸 선언 안하면 뒤에서 쓸때 this.state.어쩌구 라고 써줘야함. ex:여기서 todos 빼면 밑에서 {todos} 쓰면 에러나고 {this.state.todos} 해줘야함.
     const { handleChange, handleCreate, handleKeypress } = this;
     return (
       <TodoListTemplate form={(
@@ -48,7 +48,7 @@ class App extends Component {
           onCreate = {handleCreate}
           />
       )}>
-        <TodoItemList/>
+        <TodoItemList todos={todos}/>
       </TodoListTemplate>
     );
   }
