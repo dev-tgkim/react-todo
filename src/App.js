@@ -54,9 +54,16 @@ class App extends Component {
     });
   }
 
+  handleRemove = (id) => {
+    const {todos} = this.state;
+    this.setState({
+      todos: todos.filter(todo => todo.id !== id)
+    });
+  }
+
   render() {
     const { input, todos } = this.state; //이걸 선언 안하면 뒤에서 쓸때 this.state.어쩌구 라고 써줘야함. ex:여기서 todos 빼면 밑에서 {todos} 쓰면 에러나고 {this.state.todos} 해줘야함.
-    const { handleChange, handleCreate, handleKeypress, handleToggle } = this;
+    const { handleChange, handleCreate, handleKeypress, handleToggle, handleRemove } = this;
     return (
       <TodoListTemplate form={(
         <Form
@@ -66,7 +73,7 @@ class App extends Component {
           onCreate = {handleCreate}
           />
       )}>
-        <TodoItemList todos={todos} onToggle={handleToggle}/>
+        <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove}/>
       </TodoListTemplate>
     );
   }
